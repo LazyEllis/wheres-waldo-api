@@ -6,3 +6,23 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Player {
+  id    Int    @id @default(autoincrement())
+  name  String
+  score Int
+
+  @@map("players")
+}
+
+model Character {
+  id     Int    @id @default(autoincrement())
+  name   String
+  image  String
+  x      Int
+  y      Int
+  width  Int
+  height Int
+
+  @@map("characters")
+}
