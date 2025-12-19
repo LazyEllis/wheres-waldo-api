@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { validateMarker } from "../validators/characterValidators.js";
 import {
   listCharacters,
   placeMarker,
@@ -8,6 +9,6 @@ const characterRouter = Router();
 
 characterRouter.get("/", listCharacters);
 
-characterRouter.post("/:characterId/markers", placeMarker);
+characterRouter.post("/:characterId/markers", validateMarker, placeMarker);
 
 export default characterRouter;
