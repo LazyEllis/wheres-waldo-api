@@ -1,18 +1,7 @@
 import { beforeAll, afterAll, describe, it } from "vitest";
 import request from "supertest";
-import express from "express";
-import characterRouter from "./characterRouter.js";
+import app from "../tests/app.js";
 import prisma from "../lib/prisma.js";
-
-const app = express();
-
-app.use(express.json());
-app.use("/characters", characterRouter);
-
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  res.status(err.status || 500).json({ message: err.message });
-});
 
 beforeAll(async () => {
   await prisma.character.create({

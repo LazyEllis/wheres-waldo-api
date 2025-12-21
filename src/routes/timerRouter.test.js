@@ -1,19 +1,6 @@
 import { describe, it, expect } from "vitest";
 import request from "supertest";
-import express from "express";
-import "dotenv/config";
-import "../lib/passport.js";
-import timerRouter from "./timerRouter.js";
-
-const app = express();
-
-app.use(express.json());
-app.use("/timers", timerRouter);
-
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  res.status(err.status || 500).json({ message: err.message });
-});
+import app from "../tests/app.js";
 
 const startTimer = async () => {
   const response = await request(app)
