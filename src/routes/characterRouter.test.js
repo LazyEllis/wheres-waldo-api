@@ -1,4 +1,4 @@
-import { beforeAll, afterAll, describe, test } from "vitest";
+import { beforeAll, afterAll, describe, it } from "vitest";
 import request from "supertest";
 import express from "express";
 import characterRouter from "./characterRouter.js";
@@ -33,7 +33,7 @@ afterAll(async () => {
 });
 
 describe("GET /characters", () => {
-  test("returns characters without position fields", async () => {
+  it("returns characters without position fields", async () => {
     await request(app)
       .get("/characters")
       .expect("Content-Type", /json/)
@@ -43,7 +43,7 @@ describe("GET /characters", () => {
 });
 
 describe("POST /characters/:characterId/markers", () => {
-  test("returns the character ID when the provided point is within the character's target box", async () => {
+  it("returns the character ID when the provided point is within the character's target box", async () => {
     await request(app)
       .post("/characters/1/markers")
       .send({ x: 100, y: 200 })
@@ -61,7 +61,7 @@ describe("POST /characters/:characterId/markers", () => {
       .expect(200);
   });
 
-  test("throws a 400 error if the provided point isn't within character's target box", async () => {
+  it("returns a failing message if the provided point isn't within character's target box", async () => {
     await request(app)
       .post("/characters/1/markers")
       .send({ x: 200, y: 300 })
@@ -71,7 +71,7 @@ describe("POST /characters/:characterId/markers", () => {
       .expect(200);
   });
 
-  test("throws a 404 error if a character doesn't exist", async () => {
+  it("throws a 404 error if a character doesn't exist", async () => {
     await request(app)
       .post("/characters/2/markers")
       .send({ x: 200, y: 300 })
