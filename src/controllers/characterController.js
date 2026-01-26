@@ -33,7 +33,7 @@ export const placeMarker = async (req, res) => {
     y < character.y ||
     y > character.y + character.height
   ) {
-    res.json({
+    return res.json({
       found: false,
       message: `${character.name} is not in this position`,
     });
