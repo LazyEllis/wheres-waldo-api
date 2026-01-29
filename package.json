@@ -9,7 +9,8 @@
     "dev": "node --watch src/app.js",
     "test": "NODE_ENV=test vitest",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "postinstall": "prisma migrate deploy && prisma generate"
   },
   "repository": {
     "type": "git",
